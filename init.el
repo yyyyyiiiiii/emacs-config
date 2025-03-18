@@ -26,7 +26,8 @@
   (setq lsp-keymap-prefix "C-c l")
   :hook
   ((c-mode . lsp)
-   (rust-mode . lsp))
+   (rust-mode . lsp)
+   (csharp-mode . lsp))
   :commands lsp)
 
 (unless (package-installed-p 'lsp-ui)
@@ -62,6 +63,10 @@
       lsp-idle-delay 0.1)
 
 (setq backup-directory-alist '(("." . "~/.emacs.d/backups/")))
+
+(add-to-list 'exec-path "~/.dotnet/tools")
+
+(setq auto-save-file-name-transforms `((".*" ,temporary-file-directory t)))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
