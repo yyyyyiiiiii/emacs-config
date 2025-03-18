@@ -1,3 +1,9 @@
+(setq-default indent-tabs-mode nil)
+(setq-default tab-width 2)
+(setq-default indent-line-function 'insert-tab)
+
+; (setq rust-indent-offset 2) ;; rust
+
 (global-display-line-numbers-mode)
 (add-to-list 'default-frame-alist '(font . "Fira Code 12"))
 
@@ -5,39 +11,27 @@
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
 
-(unless (package-installed-p 'rust-mode)
-  (package-install 'rust-mode))
-(require 'rust-mode)
+(setq use-package-always-ensure t)
 
-(unless (package-installed-p 'doom-themes)
-  (package-install 'doom-themes))
-(require 'doom-themes)
-(load-theme 'doom-one t)
+(use-package rust-mode)
 
-(unless (package-installed-p 'evil)
-  (package-install 'evil))
-(require 'evil)
-(evil-mode 1)
+(use-package doom-themes
+  :config (load-theme 'doom-one t))
 
-(unless (package-installed-p 'lsp-mode)
-  (package-install 'lsp-mode))
+(use-package evil
+  :config (evil-mode 1))
+
 (use-package lsp-mode
   :init
   (setq lsp-keymap-prefix "C-c l")
   :hook
   ((c-mode . lsp)
+   (c++-mode . lsp)
    (rust-mode . lsp)
    (csharp-mode . lsp))
   :commands lsp)
 
-(unless (package-installed-p 'lsp-ui)
-  (package-install 'lsp-ui))
 (use-package lsp-ui :commands lsp-ui-mode)
-
-(unless (package-installed-p 'yasnippet)
-  (package-install 'yasnippet))
-(unless (package-installed-p 'yasnippet-snippets)
-  (package-install 'yasnippet-snippets))
 
 (use-package yasnippet
   :hook
@@ -46,9 +40,6 @@
 (use-package yasnippet-snippets
   :config
   (yas-reload-all))
-
-(unless (package-installed-p 'company)
-  (package-install 'company))
 
 (use-package company
   :init
@@ -67,6 +58,11 @@
 (add-to-list 'exec-path "~/.dotnet/tools")
 
 (setq auto-save-file-name-transforms `((".*" ,temporary-file-directory t)))
+
+(tool-bar-mode 0)
+(menu-bar-mode 0)
+(scroll-bar-mode 0)
+(ido-mode)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
