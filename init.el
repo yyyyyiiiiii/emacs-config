@@ -11,12 +11,13 @@
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
 
+(require 'use-package)
 (setq use-package-always-ensure t)
 
 (use-package rust-mode)
 
 (use-package doom-themes
-  :config (load-theme 'doom-one t))
+  :config (load-theme 'doom-moonlight t))
 
 (use-package evil
   :config (evil-mode 1))
@@ -45,6 +46,8 @@
   :init
   (setq company-backends `((:separate company-capf company-yasnippet))))
 
+(use-package typescript-mode)
+
 (electric-pair-mode 1)
 
 (setq gc-cons-threshold (* 100 1024 1024)
@@ -64,15 +67,20 @@
 (scroll-bar-mode 0)
 (ido-mode)
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages nil))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+(setq ido-enable-flex-matching t)
+(setq auto-mode-alist (append auto-mode-alist '(("\\.ccm\\'" . c++-mode)
+                                                ("\\.cppm\\'" . c++-mode)
+                                                ("\\.cxxm\\'" . c++-mode)
+                                                ("\\.c++m\\'" . c++-mode)
+                                                ("\\.ixx\\'" . c++-mode)
+                                                ("\\.tsx\\'" . tsx-ts-mode)
+                                                ("\\.csproj\\'" . xml-mode))))
+
+(setq typescript-indent-level 2)
+
+(setq custom-file "~/.config/emacs-custom.el")
+
+(if (file-exists-p custom-file)
+    (load custom-file))
+
+(setq ring-bell-function 'ignore)
