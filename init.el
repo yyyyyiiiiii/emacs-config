@@ -84,3 +84,9 @@
     (load custom-file))
 
 (setq ring-bell-function 'ignore)
+
+;; (setenv "FrameworkPathOverride" "/lib/mono/4.5")
+;; (add-hook 'csharp-mode-hook (lambda () (setq-local lsp-auto-guess-root t)))
+;; (setq lsp-disabled-clients '(csharp-ls omnisharp))
+(setq lsp-disabled-clients '(csharp-ls))
+
