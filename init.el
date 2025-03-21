@@ -59,6 +59,7 @@
 (setq backup-directory-alist '(("." . "~/.emacs.d/backups/")))
 
 (add-to-list 'exec-path "~/.dotnet/tools")
+(add-to-list 'exec-path "~/.cargo/bin")
 
 (setq auto-save-file-name-transforms `((".*" ,temporary-file-directory t)))
 
