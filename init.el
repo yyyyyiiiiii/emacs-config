@@ -48,6 +48,9 @@
 
 (use-package typescript-mode)
 
+(use-package cmake-mode)
+(use-package yaml-mode)
+
 (electric-pair-mode 1)
 
 (setq gc-cons-threshold (* 100 1024 1024)
@@ -90,4 +93,6 @@
 ;; (add-hook 'csharp-mode-hook (lambda () (setq-local lsp-auto-guess-root t)))
 ;; (setq lsp-disabled-clients '(csharp-ls omnisharp))
 (setq lsp-disabled-clients '(csharp-ls))
-
+(setq lsp-eldoc-enable-hover t)
+(setq lsp-signature-auto-activate t)
+(setq lsp-signature-render-documentation t)
