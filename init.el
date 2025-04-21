@@ -29,8 +29,15 @@
   ((c-mode . lsp)
    (c++-mode . lsp)
    (rust-mode . lsp)
-   (csharp-mode . lsp))
+   (csharp-mode . lsp)
+   (js-mode . lsp)
+   (slint-mode . lsp)
+   (python-mode . lsp)
+   (nasm-mode . lsp))
+  :config
+  (add-to-list 'lsp-language-id-configuration '(nasm-mode . "nasm"))
   :commands lsp)
+
 
 (use-package lsp-ui :commands lsp-ui-mode)
 
@@ -50,6 +57,13 @@
 
 (use-package cmake-mode)
 (use-package yaml-mode)
+(use-package meson-mode)
+
+(use-package prettier)
+
+(use-package slint-mode)
+
+(use-package nasm-mode)
 
 (electric-pair-mode 1)
 
@@ -72,7 +86,8 @@
 (ido-mode)
 
 (setq ido-enable-flex-matching t)
-(setq auto-mode-alist (append auto-mode-alist '(("\\.ccm\\'" . c++-mode)
+(setq auto-mode-alist (append auto-mode-alist '(("\\.nasm\\'" . nasm-mode)
+                                                ("\\.ccm\\'" . c++-mode)
                                                 ("\\.cppm\\'" . c++-mode)
                                                 ("\\.cxxm\\'" . c++-mode)
                                                 ("\\.c++m\\'" . c++-mode)
@@ -92,7 +107,11 @@
 ;; (setenv "FrameworkPathOverride" "/lib/mono/4.5")
 ;; (add-hook 'csharp-mode-hook (lambda () (setq-local lsp-auto-guess-root t)))
 ;; (setq lsp-disabled-clients '(csharp-ls omnisharp))
-(setq lsp-disabled-clients '(csharp-ls))
-(setq lsp-eldoc-enable-hover t)
-(setq lsp-signature-auto-activate t)
-(setq lsp-signature-render-documentation t)
+(setq lsp-disabled-clients '(csharp-ls jsts-ls))
+;; (setq lsp-eldoc-enable-hover t)
+;; (setq lsp-signature-auto-activate t)
+;; (setq lsp-signature-render-documentation t)
+
+
+(setq js-indent-level 2)
+(setq slint-indent-level 2)
